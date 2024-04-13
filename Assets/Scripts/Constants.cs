@@ -14,6 +14,16 @@ public class Constants : MonoBehaviour
     public string SceneNameNivel1 = "Nivel 1";
 
     /// <summary>
+    /// Valores de la camara.
+    /// </summary>
+    public float CameraNormalSpeed = 0.5f;
+    public float CameraFastSpeed = 3f;
+    public float CameraMovementSpeed = 1f;
+    public float CameraMovementTime = 5f;
+    public float CameraRotationAmount = 1f;
+    public Vector3 CameraZoomAmount = new Vector3(0f, -10f, 10f);
+
+    /// <summary>
     /// Nombres de Inputs.
     /// </summary>
     //public string nameInputX = "Horizontal";

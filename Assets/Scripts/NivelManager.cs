@@ -20,6 +20,7 @@ public class NivelManager : MonoBehaviour
     {
         stringMove.Container = transitionInitial;
         stringMove.Restart(true);
+        CameraController.instance.followTransform = stringMove.transform;
     }
 
     public void Restart()
