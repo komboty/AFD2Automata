@@ -12,6 +12,9 @@ public class TransitionsManager : MonoBehaviour
     public Constants constants;
     // Cadena a mover por las transiciones.
     public SplineAnimate stringMove;
+    // Es estado incial?.
+    public bool isStateInitial = false;
+    private bool auxStateInitial = true;
     // Es estado final?.
     public bool isStateFinal = false;
 
@@ -21,10 +24,24 @@ public class TransitionsManager : MonoBehaviour
         // Si la cadena entro al estado.
         if (other.CompareTag(constants.tagString))
         {
-            string nameSymbol = other.transform.GetChild(1).GetChild(0).name;
-            Debug.Log("Simbolo de cadena: " + nameSymbol);
-            //Transform symbols = other.transform.GetChild(1);
+            int childNum = 1;
+            Transform symbols = other.transform.GetChild(1);
 
+            // Si es estado inicial. La primera vez no hace nada.
+            if (auxStateInitial && isStateInitial)
+            {
+                auxStateInitial = false;
+                childNum = 0;
+            }
+            // Si es estado inicial y es la segunda vez qu pasa. O si es cualquier otro estado.
+            else
+            {
+                Destroy(symbols.GetChild(0).gameObject);                
+            }
+
+            //Debug.Log(childNum);
+            string nameSymbol = symbols.GetChild(childNum).name;
+            Debug.Log("Simbolo de cadena: " + nameSymbol);
 
             // Se asigna la transicion segun el simbolo.
             for (int i = 0; i < transform.childCount; i++)
@@ -35,11 +52,10 @@ public class TransitionsManager : MonoBehaviour
                 if (nameSymbol.Equals(transition.name))
                 {
                     // Se dirije al nuevo estado por su transicion respectiva.
-                    Debug.Log("Ir a transicion " + transition.name);
+                    //Debug.Log("Ir a transicion " + transition.name);
                     stringMove.Container = transition.GetChild(0).GetComponent<SplineContainer>();
                     stringMove.Restart(true);
-                    return;
-                
+                    return;                
                 }
             }
 

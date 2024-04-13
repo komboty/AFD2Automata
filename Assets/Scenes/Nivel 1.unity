@@ -2126,6 +2126,10 @@ PrefabInstance:
       propertyPath: isStateFinal
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 389705414510725581, guid: 24a620f2997a3ab4d89f136a884352d7, type: 3}
+      propertyPath: isStateInitial
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5520674840392060802, guid: 24a620f2997a3ab4d89f136a884352d7, type: 3}
       propertyPath: m_IsActive
       value: 1
