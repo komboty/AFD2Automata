@@ -12,58 +12,8 @@ public class TransitionsManager : MonoBehaviour
     public Constants constants;
     // Cadena a mover por las transiciones.
     public SplineAnimate stringMove;
-    /*
-    // Es estado inicial?.
-    public bool isStateInitial = false;
-    // Transicion inicial.
-    public SplineContainer transitionInitial;
-    */
-    // Transiciones.
-    //public List<SplineContainer> transitions;
-        
-    void Start()
-    {
-        /*
-        if(isStateInitial)
-        {
-            stringMove.Container = transitionInitial;
-            Invoke(nameof(Play), 1);
-        }
-        */
-    }
-
-// Update is called once per frame
-    void Update()
-    {
-        /*
-       if (!stringMove.IsPlaying)
-       {
-           Debug.Log("IsPlaying");
-
-           if (numSpline < splineContainers.Length)
-           {
-               numSpline++;
-               splineAnimate.Container = splineContainers[numSpline];
-               Invoke(nameof(Play), 1);
-           }
-           
-    }*/
-
-    }
-
-    public void Play()
-    {        
-        //Debug.Log("play");
-        stringMove.Play();
-    }
-
-    /*
-    public void StartAutomata()
-    {
-        stringMove.Container = transitionInitial;
-        stringMove.Play();
-    }
-    */
+    // Es estado final?.
+    public bool isStateFinal = false;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -71,21 +21,36 @@ public class TransitionsManager : MonoBehaviour
         // Si la cadena entro al estado.
         if (other.CompareTag(constants.tagString))
         {
+            string nameSymbol = other.transform.GetChild(1).GetChild(0).name;
+            //Debug.Log("Simbolo de cadena: " + nameSymbol);
+            //Transform symbols = other.transform.GetChild(1);
+
+
             // Se asigna la transicion segun el simbolo.
-            for (int i = 0; i < transform.childCount; i++)
+            for (int i = 0; i < transform.childCount - 1; i++)
             {
                 Transform transition = transform.GetChild(i);
 
                 // Si el primer simbolo de la cadena es igual al de la transicion.
-                if (other.transform.GetChild(0).name == transition.name)
+                if (nameSymbol.Equals(transition.name))
                 {
+                    // Se dirije al nuevo estado por su transicion respectiva.
                     Debug.Log("Ir a transicion " + transition.name);
                     stringMove.Container = transition.GetComponent<SplineContainer>();
-                    //Invoke(nameof(stringMove.Play), 1f);
                     stringMove.Restart(true);
-                    //Invoke(nameof(stringMove.Play), 1);
                     return;
+                
                 }
+            }
+
+            // Si el estado es final y el simbolo que queda es epsilon.
+            if (isStateFinal && nameSymbol.Equals(constants.SymbolEpsilonName)) {
+                Debug.Log("Ganaste");
+            }
+            // Si el estado NO es final o el simbolo que queda NO es epsilon.
+            else
+            {
+                Debug.Log("Perdiste");
             }
         }
     }

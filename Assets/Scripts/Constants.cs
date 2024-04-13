@@ -42,6 +42,6 @@ public class Constants : MonoBehaviour
     /// <summary>
     /// Simbolos.
     /// </summary>
-    //public string SymbolRed = "R";
+    public string SymbolEpsilonName = "E";
     //public string SymbolGreen = "G";
 }
