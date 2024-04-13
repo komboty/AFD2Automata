@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Script que controla la etiqueta de la transicion de un estado.
+/// Script que verifica que simbolo pasa por la etiqueta de una transicion de un estado.
 /// </summary>
 public class TransitionLabelControl : MonoBehaviour
 {

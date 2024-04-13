@@ -11,7 +11,7 @@ public class Constants : MonoBehaviour
     /// Nombres de Escenas.
     /// </summary>
     //public string nameSceneMenu = "MainMenu";
-    //public string nameSceneNivel1 = "Nivel1";
+    public string SceneNameNivel1 = "Nivel 1";
 
     /// <summary>
     /// Nombres de Inputs.

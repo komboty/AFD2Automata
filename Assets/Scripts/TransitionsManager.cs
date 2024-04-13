@@ -22,12 +22,12 @@ public class TransitionsManager : MonoBehaviour
         if (other.CompareTag(constants.tagString))
         {
             string nameSymbol = other.transform.GetChild(1).GetChild(0).name;
-            //Debug.Log("Simbolo de cadena: " + nameSymbol);
+            Debug.Log("Simbolo de cadena: " + nameSymbol);
             //Transform symbols = other.transform.GetChild(1);
 
 
             // Se asigna la transicion segun el simbolo.
-            for (int i = 0; i < transform.childCount - 1; i++)
+            for (int i = 0; i < transform.childCount; i++)
             {
                 Transform transition = transform.GetChild(i);
 
@@ -36,7 +36,7 @@ public class TransitionsManager : MonoBehaviour
                 {
                     // Se dirije al nuevo estado por su transicion respectiva.
                     Debug.Log("Ir a transicion " + transition.name);
-                    stringMove.Container = transition.GetComponent<SplineContainer>();
+                    stringMove.Container = transition.GetChild(0).GetComponent<SplineContainer>();
                     stringMove.Restart(true);
                     return;
                 

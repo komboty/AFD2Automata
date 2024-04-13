@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Splines;
 
 /// <summary>
-/// Script que controla una transicion de un estado.
+/// Script que cambia la posicion de la etiqueta una transicion de un estado.
 /// </summary>
 public class TranstionLabelPosition : MonoBehaviour
 {

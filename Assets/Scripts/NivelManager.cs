@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Splines;
 
 /// <summary>
@@ -9,7 +10,7 @@ using UnityEngine.Splines;
 public class NivelManager : MonoBehaviour
 {
     // Constantes del juego.
-    //public Constants constants;
+    public Constants constants;
     // Cadena a mover por las transiciones.
     public SplineAnimate stringMove;
     // Transicion inicial.
@@ -19,5 +20,10 @@ public class NivelManager : MonoBehaviour
     {
         stringMove.Container = transitionInitial;
         stringMove.Restart(true);
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(constants.SceneNameNivel1);
     }
 }

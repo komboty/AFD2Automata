@@ -44,4 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f9a0ffc2a9b934681361b14d837d25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SceneNameNivel1: Nivel 1
   tagString: String
+  SymbolEpsilonName: E
