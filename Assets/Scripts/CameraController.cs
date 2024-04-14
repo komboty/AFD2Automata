@@ -37,14 +37,14 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         instance = this;
-
+        // Se asignan valores por defecto.
         normalSpeed = constants.CameraNormalSpeed;
         fastSpeed = constants.CameraFastSpeed;
         movementSpeed = constants.CameraMovementSpeed;
         movementTime = constants.CameraMovementTime;
         rotationAmount = constants.CameraRotationAmount;
         zoomAmount = constants.CameraZoomAmount;
-                
+
         newPosition = transform.position;
         newRotation = transform.rotation;
         newZoom = cameraTransform.localPosition;
@@ -52,16 +52,25 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+        // Si se sigue un objetivo.
         if (followTransform != null)
         {
             transform.position = followTransform.position;
         }
+        // Si NO se sigue un objetivo.
         else
-        {         
-            HandleMouseInput();
+        {
+            // Si NO se esta moviendo un simbolo de la interfaz de usuario.
+            if(UISymbolDrag.itemDragging == null)
+            {
+                // Movimiento de la pantalla con el mouse.
+                HandleMouseInput();
+            }
+            // Movimiento de la pantalla con el teclado.
             HandleMovementInput();
         }
 
+        // Se sale de la vista fijada al objetivo.
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             followTransform = null;
@@ -98,11 +107,13 @@ public class CameraController : MonoBehaviour
                 newPosition = transform.position + dragStartPosition - dragCurrentPosition;
             }
         }
-        if (Input.GetMouseButtonDown(2))
+
+        // Rotacion
+        if (Input.GetMouseButtonDown(1))
         {
             rotateStartPosition = Input.mousePosition;
         }
-        if (Input.GetMouseButton(2))
+        if (Input.GetMouseButton(1))
         {
             rotateCurrentPosition = Input.mousePosition;
             Vector3 difference = rotateStartPosition - rotateCurrentPosition;
