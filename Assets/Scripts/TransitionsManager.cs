@@ -17,6 +17,10 @@ public class TransitionsManager : MonoBehaviour
     private bool auxStateInitial = true;
     // Es estado final?.
     public bool isStateFinal = false;
+    // Mensaje de ganador.
+    public GameObject uiWinner;
+    // Mensaje de perdedor.
+    public GameObject uiLoser;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -61,12 +65,12 @@ public class TransitionsManager : MonoBehaviour
 
             // Si el estado es final y el simbolo que queda es epsilon.
             if (isStateFinal && nameSymbol.Equals(constants.SymbolEpsilonName)) {
-                Debug.Log("Ganaste");
+                uiWinner.SetActive(true);
             }
             // Si el estado NO es final o el simbolo que queda NO es epsilon.
             else
             {
-                Debug.Log("Perdiste");
+                uiLoser.SetActive(true);
             }
         }
     }

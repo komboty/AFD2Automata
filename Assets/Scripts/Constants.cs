@@ -11,7 +11,7 @@ public class Constants : MonoBehaviour
     /// Nombres de Escenas.
     /// </summary>
     //public string nameSceneMenu = "MainMenu";
-    public string SceneNameNivel1 = "Nivel 1";
+    public string SceneNameNivelTest = "Nivel Test";
 
     /// <summary>
     /// Valores de la camara.

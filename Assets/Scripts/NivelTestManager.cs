@@ -7,7 +7,7 @@ using UnityEngine.Splines;
 /// <summary>
 /// Script que maneja el nivel.
 /// </summary>
-public class NivelManager : MonoBehaviour
+public class NivelTestManager : MonoBehaviour
 {
     // Constantes del juego.
     public Constants constants;
@@ -26,11 +26,18 @@ public class NivelManager : MonoBehaviour
 
     public void StartAutomata()
     {
+        // Si ya se inicio el automata. No hacer nada.
+        if (!uiString.parent.gameObject.activeSelf)
+        {
+            return;
+        }            
+
         // Auxiliar para la creacion de un simbolo.
         GameObject symbolPrefa = null;
-        GameObject newSymbol = null;
+        GameObject newSymbol;
 
-        for (int i = 0; i < uiString.childCount; i++) { 
+        for (int i = 0; i < uiString.childCount; i++) 
+        { 
             Transform uiSymbol = uiString.GetChild(i);
             // Se busca el modelo 3d del symbolo.
             foreach (GameObject symbol in symbolsAlphabet)
@@ -56,14 +63,25 @@ public class NivelManager : MonoBehaviour
             stringSymbols.position.y, 
             stringSymbols.position.z - (uiString.childCount * 1.2f));
 
-        // Se inicia la animacion del automata. 
+        // Se inicia el automata.
         stringMove.Container = transitionInitial;
         stringMove.Restart(true);
         CameraController.instance.followTransform = stringMove.transform;
+        //uiString.parent.gameObject.SetActive(false);
+        // Se ocultan elementos de la interfaz de usaurio.
+        for (int i = 1; i < uiString.parent.childCount; i++)
+        {
+            uiString.parent.GetChild(i).gameObject.SetActive(false);
+        }
+        // Se elimina el drag de los symbolos de la interfaz de usuario.
+        for (int i = 0; i < uiString.childCount; i++)
+        {
+            Destroy(uiString.GetChild(i).GetComponent<UISymbolDrag>());
+        }
     }
 
     public void Restart()
     {
-        SceneManager.LoadScene(constants.SceneNameNivel1);
+        SceneManager.LoadScene(constants.SceneNameNivelTest);
     }
 }
