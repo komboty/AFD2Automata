@@ -21,6 +21,6 @@ public class UIAlphabetManager : MonoBehaviour, IPointerClickHandler
         newSymbol.GetComponent<Image>().color = transform.GetComponent<Image>().color;
         //symbol.AddComponent<UISymbolDrag>();        
         //Destroy(symbol.GetComponent<UIAlphabetManager>());
-        UnityEditor.GameObjectUtility.SetParentAndAlign(newSymbol, UIstring);
+        newSymbol.transform.SetParent(UIstring.transform, false);
     }
 }
